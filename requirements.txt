@@ -1,0 +1,11 @@
+//instalation
+pip install django==2.1
+pip install djangorestframework
+
+//run code
+./manage.py makemigrations
+./manage.py migrate
+./manage runserver
+
+//for postgres db
+pip install psycopg2
