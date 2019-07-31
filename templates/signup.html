@@ -1,0 +1,80 @@
+{% load static %}
+<div class="text-center">
+    <h1 style="margin-left:-44px;">Search App</h1>
+</div>
+<br>
+
+<div align="center" ><a id="toggle" style="font-size:20px">Search</a> &#92; <a id="search_toggle" style="font-size:20px">Signup</a></div>
+<div class="signup_div">
+  <form class="form-horizontal" action="/signup/" method="post" >{% csrf_token %}
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="name">Name:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="name" placeholder="Name" name="name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="lastname">Last Name:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="lastname" placeholder="Enter LastName" name="lastname">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="mobile">mobile:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="mobile" placeholder="Enter Mobile" name="mobile">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-2">
+                <button type="submit" class="btn btn-default" value="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+<br><br><br>
+<div  class="search_div" style="margin-left:23%">
+    <form class="form-horizontal" method='GET' action='/searchdata'>{% csrf_token %}
+        <div class="form-group">
+            <label class="control-label col-sm-2" >Search:</label>
+            <div class="col-sm-4">
+                <input type='text' name='q' placeholder="Enter Search Keyword" value='{{ request.GET.q }}' id='intry'>
+                 <input type='submit' value='Search' class='button_1' id='sub1'>
+            </div>
+        </div>
+    </form>
+    <div style="margin-left:16%">
+    <ul>
+    {% for element in search %}
+        <li>{{ element.name}}</li>
+    {% endfor %}
+    </ul>
+    </div>
+</div>
+
+<link rel="stylesheet" href="{% static 'css/assignment.css' %}">
+
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script>
+$(".search_div").show();
+$(".signup_div").hide();
+    $(document).ready(function () {
+        $("#search_toggle").click(function () {
+            $(".search_div").hide();
+            $(".signup_div").show();
+        });
+    });
+
+    $(document).ready(function () {
+        $("#toggle").click(function () {
+            $(".signup_div").hide();
+            $(".search_div").show();
+        });
+    });
+
+
+</script>
+
